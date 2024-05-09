@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp_assessment.data.local.model.weather
 import com.example.weatherapp_assessment.databinding.FragmentDashboardBinding
 import com.example.weatherapp_assessment.databinding.FragmentHomeBinding
@@ -21,7 +23,7 @@ class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val viewmodel: DashboardViewModel by viewModels()
-
+    lateinit var itemAdapter: weatherAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +40,18 @@ class DashboardFragment : Fragment() {
     }
 
     private fun ProcessWeather(state: ResultState<List<weather>>?) {
-
+        when(state){
+            is ResultState.Loading-> {}
+            is ResultState.Success->{
+                itemAdapter = weatherAdapter (this)
+                _binding!!.rvWeather.adapter= itemAdapter
+                _binding!!.rvWeather.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                itemAdapter.confirmOrder(state.data!!)
+            }
+            is ResultState.Error-> Toast.makeText(requireContext(),state.message ?:"An Error occured",
+                Toast.LENGTH_LONG).show()
+            else -> {Toast.makeText(requireContext(),"An Error occured",Toast.LENGTH_LONG).show()}
+        }
     }
 
     override fun onDestroyView() {

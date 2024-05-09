@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_5sdp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/txttemps"
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:text="sample"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+        <TextView
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:id="@+id/txtdatetemps"
+            android:text="sample"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:id="@+id/txtsunrises"
+            android:text="sample"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+        <TextView
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:id="@+id/txtsunsets"
+            android:text="sample"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
