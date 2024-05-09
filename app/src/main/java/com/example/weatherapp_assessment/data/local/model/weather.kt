@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity
 data class weather(
     @PrimaryKey(autoGenerate = true) val Id: Int=0,
-    val temp:Double,
+    val temp:String,
     val datestemp:String,
     val description:String,
-    val sunrise:Long,
-    val sunset:Long
+    val sunrise:String,
+    val sunset:String
 )

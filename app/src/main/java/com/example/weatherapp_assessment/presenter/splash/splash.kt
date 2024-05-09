@@ -11,18 +11,20 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.weatherapp_assessment.R
 import com.example.weatherapp_assessment.databinding.ActivitySplashBinding
+import com.example.weatherapp_assessment.databinding.FragmentHomeBinding
 import com.example.weatherapp_assessment.presenter.main.MainActivity
 import com.example.weatherapp_assessment.util.TempManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 class splash : AppCompatActivity() {
-    lateinit var _binding:ActivitySplashBinding
+    private var _binding:ActivitySplashBinding?= null
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding= ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(_binding.root)
+        setContentView(_binding!!.root)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -111,6 +113,11 @@ class splash : AppCompatActivity() {
     }
     companion object {
         private const val PERMISSION_REQUEST_CODE = 123
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
 

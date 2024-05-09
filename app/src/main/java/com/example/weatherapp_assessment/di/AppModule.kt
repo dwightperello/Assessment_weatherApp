@@ -27,6 +27,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -84,22 +85,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAPI(): Retrofit {
+    fun provideAPI(): weatherAPI {
         return Retrofit.Builder()
             .baseUrl(constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(weatherAPI::class.java)
     }
 
-    inline fun <reified T>provideAPIcalls(retrofit: Retrofit):T{
-        return retrofit.create(T::class.java)
-    }
 
-    @Provides
-    @Singleton
-    fun provideAPIcalls(retrofit: Retrofit): weatherAPI {
-        return provideAPIcalls(retrofit)
-    }
 
     @Provides
     @Singleton

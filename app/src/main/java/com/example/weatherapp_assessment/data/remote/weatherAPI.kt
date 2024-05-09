@@ -10,6 +10,7 @@ interface weatherAPI {
     suspend fun getWeather(
         @Query("lat") lat:Double,
         @Query("lon") lon :Double,
-        @Query("appid")id:String
+        @Query("appid")id:String,
+        @Query("units")units:String= "metric"
     ): WeatherResponse
 }
