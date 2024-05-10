@@ -104,13 +104,6 @@ class HomeFragment : Fragment() {
                             .transition(DrawableTransitionOptions.withCrossFade())
                             .into(_binding!!.ivImage)
                     }
-
-
-
-
-
-
-
                 }else{
                     Toast.makeText(requireContext(),"No User Found", Toast.LENGTH_SHORT).show()
                 }
