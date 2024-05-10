@@ -2,6 +2,7 @@ package com.example.weatherapp_assessment.presenter.weather.ui.home
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,9 +47,7 @@ class HomeFragment : Fragment() {
     ): View {
        _binding= FragmentHomeBinding.inflate(inflater,container,false)
 
-
-        viewmodel.onEvent(events = HomeEvent.getWeather(TempManager.latitude!!,TempManager.long!!,constants.API_KEY))
-        viewmodel.weather.observe(this, Observer {
+        viewmodel.weather.observe(viewLifecycleOwner, Observer {
                 state-> ShowWeather(state)
         })
         return _binding!!.root
@@ -90,7 +89,6 @@ class HomeFragment : Fragment() {
 
                     }
                     _binding!!.txtmain.text=weather.main
-                    val imageUrl = "https://my.jpg"
                     if(isPast6(_binding!!.txtsunrise.text.toString())){
                         Glide.with(requireContext())
                             .load(R.drawable.moon)
@@ -104,13 +102,6 @@ class HomeFragment : Fragment() {
                             .transition(DrawableTransitionOptions.withCrossFade())
                             .into(_binding!!.ivImage)
                     }
-
-
-
-
-
-
-
                 }else{
                     Toast.makeText(requireContext(),"No User Found", Toast.LENGTH_SHORT).show()
                 }

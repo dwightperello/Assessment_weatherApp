@@ -1,4 +1,4 @@
-package com.example.data.local
+package com.example.weatherapp_assessment.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room

@@ -32,7 +32,7 @@ class weatherAdapter (private val fragment: Fragment): RecyclerView.Adapter<weat
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val weatherItem= items[position]
         holder.tempTextView.text= weatherItem.temp
-        holder.temps.text= weatherItem.datestemp
+        holder.temps.text= weatherItem.description
         holder.sunrise.text= weatherItem.sunrise
         holder.sunset.text= weatherItem.sunset
     }

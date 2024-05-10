@@ -7,6 +7,9 @@ class TestRepository : weatherRepository {
 
     private val weather= mutableListOf<WeatherResponse>()
 
+    private var shouldReturnNetworkError = false
+
+
     override suspend fun getWeather(lat: Double, lon: Double, id: String): WeatherResponse {
         return weather.firstOrNull() ?: throw NoSuchElementException("No weather data available")
     }
@@ -14,4 +17,5 @@ class TestRepository : weatherRepository {
     fun addweather(weatherResponse: WeatherResponse){
         weather.add(weatherResponse)
     }
+
 }

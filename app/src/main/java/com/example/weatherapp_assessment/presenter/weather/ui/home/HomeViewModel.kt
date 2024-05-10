@@ -39,7 +39,7 @@ init {
     private fun getWeatherFromAPI(lat: Double, lon: Double, key: String) {
         viewModelScope.launch {
             weatherUseCase.getweatherusecase(lat,lon,key).onEach {
-                _weather.value=it
+                _weather.postValue(it)
             }.launchIn(viewModelScope)
         }
     }
