@@ -43,6 +43,21 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="867357622">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_33" value="120" />
+                  <entry key="R5CX1490LFY" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung&#10; SM-S928B" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
