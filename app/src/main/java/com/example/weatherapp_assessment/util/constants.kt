@@ -4,7 +4,7 @@ import com.example.weatherapp_assessment.BuildConfig
 
 object constants {
 
-    const val API_KEY=BuildConfig.API_KEY
+    var API_KEY:String=""
     const val BASE_URL="https://api.openweathermap.org/data/2.5/"
 
 

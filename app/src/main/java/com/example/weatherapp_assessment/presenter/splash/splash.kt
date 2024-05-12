@@ -9,11 +9,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.weatherapp_assessment.BuildConfig
+import com.example.weatherapp_assessment.BuildConfig.API_KEY
 import com.example.weatherapp_assessment.R
 import com.example.weatherapp_assessment.databinding.ActivitySplashBinding
 import com.example.weatherapp_assessment.databinding.FragmentHomeBinding
 import com.example.weatherapp_assessment.presenter.main.MainActivity
 import com.example.weatherapp_assessment.util.TempManager
+import com.example.weatherapp_assessment.util.constants
+import com.example.weatherapp_assessment.util.ecryptSharedPref
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -21,10 +25,15 @@ class splash : AppCompatActivity() {
     private var _binding:ActivitySplashBinding?= null
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    private lateinit var apiKeyManager: ecryptSharedPref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(_binding!!.root)
+        apiKeyManager = ecryptSharedPref(this)
+        saveApiKeyIfNotExists()
+       constants.API_KEY = apiKeyManager.getApiKey().toString()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -118,6 +127,17 @@ class splash : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun saveApiKeyIfNotExists() {
+        val apiKey = apiKeyManager.getApiKey()
+        if (apiKey == null) {
+            if(API_KEY.isNullOrEmpty()){
+                Toast.makeText(this,"no key",Toast.LENGTH_LONG).show()
+            }else{
+                apiKeyManager.saveApiKey(API_KEY)
+            }
+        }
     }
 }
 
