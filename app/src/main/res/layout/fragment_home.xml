@@ -4,124 +4,184 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.weather.ui.home.HomeFragment">
+    tools:context=".presenter.weather.home.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Country:"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtcountry"
-                android:text=""/>
-        </LinearLayout>
+            android:orientation="vertical"
+            android:layout_gravity="end">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="City:"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtcity"
-                android:text=""/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Temperature:"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txttemp"
-                android:text=""/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Sunrise:"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtsunrise"
-                android:text=""/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Sunset:"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtsunset"
-                android:text=""/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtmain"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:text="THIS IS A TEST"/>
             <ImageView
+
                 android:id="@+id/iv_image"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="130dp"
                 android:layout_height="100dp"
                 android:src="@drawable/sun"
-                android:layout_gravity="center"
-                android:foregroundGravity="center"></ImageView>
+                android:layout_gravity="end"
+                android:foregroundGravity="right"></ImageView>
+            <TextView
+                android:id="@+id/txtmain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CLOUDS"
+                android:layout_gravity="end"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txttemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="34.00"
+                android:layout_gravity="end"
+                android:gravity="center"/>
+
+
+
         </LinearLayout>
+
+
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="8dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Parent LinearLayout with horizontal orientation -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- First LinearLayout -->
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Country:"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/txtcountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Philippines"/>
+                </LinearLayout>
+
+                <!-- Second LinearLayout -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="City:"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/txtcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paranaque"/>
+                </LinearLayout>
+
+
+
+                <!-- Repeat the same for other LinearLayouts -->
+            </LinearLayout>
+
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sunrise:"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/txtsunrise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Philippines"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sunset:"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/txtsunset"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paranaque"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
 

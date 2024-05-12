@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.dashboard
+package com.example.weatherapp_assessment.presenter.weather.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp_assessment.data.local.model.weather
 import com.example.weatherapp_assessment.databinding.FragmentDashboardBinding
 import com.example.weatherapp_assessment.databinding.FragmentHomeBinding
-import com.example.weatherapp_assessment.presenter.weather.ui.home.HomeViewModel
+import com.example.weatherapp_assessment.presenter.weather.home.HomeViewModel
 import com.example.weatherapp_assessment.util.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 

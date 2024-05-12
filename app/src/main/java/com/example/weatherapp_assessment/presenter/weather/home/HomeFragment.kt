@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.home
+package com.example.weatherapp_assessment.presenter.weather.home
 
 import android.os.Build
 import android.os.Bundle
@@ -22,6 +22,8 @@ import com.example.weatherapp_assessment.data.local.model.weather
 import com.example.weatherapp_assessment.data.remote.model.WeatherResponse
 import com.example.weatherapp_assessment.databinding.FragmentHomeBinding
 import com.example.weatherapp_assessment.presenter.main.mainViewModel
+import com.example.weatherapp_assessment.presenter.weather.dashboard.DashboardViewModel
+import com.example.weatherapp_assessment.presenter.weather.dashboard.localWeatherEvents
 import com.example.weatherapp_assessment.util.ResultState
 import com.example.weatherapp_assessment.util.TempManager
 import com.example.weatherapp_assessment.util.constants
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val viewmodel: HomeViewModel by viewModels()
+    private val weatherViewModel:DashboardViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -64,7 +67,8 @@ class HomeFragment : Fragment() {
                   val weather=  state.data.weather[0]
                     _binding!!.txtcountry.text= state.data.sys.country
                     _binding!!.txtcity.text= state.data.name
-                    _binding!!.txttemp.text= state.data.main.temp.toString()
+                    val temp = state.data.main.temp
+                    _binding!!.txttemp.text= String.format("%.1f°C", temp)
                     _binding!!.txtsunrise.text= format(state.data.sys.sunrise)
                     _binding!!.txtsunset.text= format(state.data.sys.sunset)
 
@@ -105,23 +109,24 @@ class HomeFragment : Fragment() {
                 }else{
                     Toast.makeText(requireContext(),"No User Found", Toast.LENGTH_SHORT).show()
                 }
+                if(!saved) {
+                    saved=true
+                    val loc_weather = weather(
+                        Id = 0,
+                        temp = _binding?.txttemp?.text.toString(),
+                        datestemp = _binding!!.txtmain.text.toString(),
+                        description = _binding!!.txtcity.text.toString(),
+                        sunrise = _binding!!.txtsunrise.text.toString(),
+                        sunset = _binding!!.txtsunset.text.toString()
+                    )
+                    weatherViewModel.onEvent(localWeatherEvents.insertWeatherToDB(loc_weather))
+                }
             }
             is ResultState.Error -> Toast.makeText(requireContext(),state.message ?:"An Error occured",Toast.LENGTH_LONG).show()
             else -> {Toast.makeText(requireContext(),"An Error occured",Toast.LENGTH_LONG).show()}
         }
 
-        if(!_binding!!.txttemp.text.isNullOrEmpty() && !saved) {
-            saved=true
-            val loc_weather = weather(
-                Id = 0,
-                temp = _binding!!.txttemp.text.toString(),
-                datestemp = _binding!!.txtmain.text.toString(),
-                description = _binding!!.txtcity.text.toString(),
-                sunrise = _binding!!.txtsunrise.text.toString(),
-                sunset = _binding!!.txtsunset.text.toString()
-            )
-            viewmodel.insertWeather(loc_weather)
-        }
+
     }
 
     override fun onDestroyView() {

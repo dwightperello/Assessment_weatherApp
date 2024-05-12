@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.dashboard
+package com.example.weatherapp_assessment.presenter.weather.dashboard
 
 import android.view.LayoutInflater
 import android.view.View

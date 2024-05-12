@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.dashboard
+package com.example.weatherapp_assessment.presenter.weather.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,8 +19,30 @@ class DashboardViewModel @Inject constructor ( private val weatherUseCases: Weat
     private val _savedWeather:MutableLiveData<ResultState<List<weather>>> = MutableLiveData()
     val savedWeather:LiveData<ResultState<List<weather>>> get() = _savedWeather
 
+    private val _saving=MutableLiveData<Boolean>()
+    val saving:LiveData<Boolean> = _saving
+
     init {
-        getAllSaved()
+        onEvent(localWeatherEvents.getAllWeatherFromDb)
+    }
+
+    fun onEvent(events: localWeatherEvents){
+        when(events){
+            is localWeatherEvents.getAllWeatherFromDb -> {getAllSaved()}
+            is localWeatherEvents.insertWeatherToDB -> {saveToDb(events.weather)}
+        }
+    }
+
+    private fun saveToDb(weather: weather) {
+        viewModelScope.launch {
+            try {
+                weatherUseCases.insertWeather(weather)
+                _saving.postValue(true)
+            }catch (e:Exception){
+                _saving.postValue(false)
+            }
+
+        }
     }
 
     private fun getAllSaved(){

@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.home
+package com.example.weatherapp_assessment.presenter.weather.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,15 +21,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val weatherUseCase: WeatherUseCase,private val weatherUseCases: WeatherUseCases) : ViewModel() {
+class HomeViewModel @Inject constructor(private val weatherUseCase: WeatherUseCase) : ViewModel() {
 
    private val _weather:MutableLiveData<ResultState<WeatherResponse>> = MutableLiveData()
     val weather:LiveData<ResultState<WeatherResponse>> get() = _weather
 
-init {
-    onEvent(HomeEvent.getWeather(TempManager.latitude!!,TempManager.long!!,constants.API_KEY))
-}
+    init {
+        val latitude = TempManager.latitude
+        val longitude = TempManager.long
 
+        if (latitude != null && longitude != null) {
+            onEvent(HomeEvent.getWeather(latitude, longitude, constants.API_KEY))
+        } else {
+            // Handle the case when latitude or longitude is null
+            _weather.value = ResultState.Error("Latitude or longitude is null")
+        }
+    }
     fun onEvent(events: HomeEvent){
         when(events){
             is HomeEvent.getWeather -> {getWeatherFromAPI(events.lat,events.lon,events.key)}
@@ -44,9 +51,9 @@ init {
         }
     }
 
-    fun insertWeather(weather: weather){
-        viewModelScope.launch {
-            weatherUseCases.insertWeather(weather)
-        }
-    }
+//    fun insertWeather(weather: weather){
+//        viewModelScope.launch {
+//            weatherUseCases.insertWeather(weather)
+//        }
+//    }
 }

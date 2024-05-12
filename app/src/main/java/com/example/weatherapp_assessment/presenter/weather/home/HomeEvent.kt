@@ -1,4 +1,4 @@
-package com.example.weatherapp_assessment.presenter.weather.ui.home
+package com.example.weatherapp_assessment.presenter.weather.home
 
 import com.example.weatherapp_assessment.presenter.main.LoginEvents
 
